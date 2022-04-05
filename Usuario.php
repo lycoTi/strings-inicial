@@ -10,9 +10,17 @@ class Usuario
     public function __construct(string $nome)
     {
         $nomeSobrenome = explode(" ", $nome, 2);
+        if ($nomeSobrenome[0] === "") {
+            $this->nome = "Nome inválido";
+        } else {
+            $this->nome = $nomeSobrenome[0];
+        }
 
-        $this->nome = $nomeSobrenome[0];
-        $this->sobrenome = $nomeSobrenome[1];
+        if (count($nomeSobrenome) < 2) {
+            $this->sobrenome = "Sobrenome inválido";
+        } else {
+            $this->sobrenome = $nomeSobrenome[1];
+        }
     }
     public function getNome(): string
     {
