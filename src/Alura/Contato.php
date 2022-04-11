@@ -5,8 +5,10 @@ namespace App\Alura;
 class Contato
 {
     private $email;
+    private $endereco;
+    private $cep;
 
-    public function __construct(string $email)
+    public function __construct(string $email, string $endereco, string $cep)
     {
         $this->email = $email;
 
@@ -15,6 +17,9 @@ class Contato
         } else {
             $this->setEmail("e-mail inválido");
         }
+
+        $this->endereco = $endereco;
+        $this->cep = $cep;
     }
     public function setEmail(string $email): void
     {
@@ -36,5 +41,10 @@ class Contato
     private function validaEmail(string $email)
     {
         return filter_var($email, FILTER_VALIDATE_EMAIL);
+    }
+    public function getEnderecoCep(): string
+    {
+        $enderecoCep = [$this->endereco, $this->cep];
+        return implode(" - ", $enderecoCep);
     }
 }
